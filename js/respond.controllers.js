@@ -580,7 +580,6 @@
 		
 		// shows the images dialog
 		$scope.showAddImage = function(action){
-		
 			$scope.retrieveImages();
 			$('#imagesDialog').attr('data-action', action);
 			$('#imagesDialog').modal('show');
@@ -2405,6 +2404,7 @@
 				'Layout': '',
 				'Stylesheet': '',
 				'IsSecure': 0,
+				'PageTypeId': ''
 			};
 		
 			$('#pageTypeDialog').modal('show');
@@ -2416,9 +2416,25 @@
 		// adds the page type
 		$scope.addPageType = function(pageType){
 		
-			PageType.add(pageType);
-		
-			$('#pageTypeDialog').modal('hide');
+			message.showMessage('progress');
+			
+			// add pagetype
+			PageType.add(pageType,
+				function(data){  // success
+					message.showMessage('success');
+					$('#pageTypeDialog').modal('hide');
+					
+					// update pages list if duplicated
+					if(pageType.PageTypeId != ''){
+						$scope.listPages();
+					}
+					
+				},
+				function(){  // failure
+					message.showMessage('error');
+					$('#pageTypeDialog').modal('hide');
+				});
+			
 		}
 		
 		// shows the remove page type dialog
@@ -2436,6 +2452,8 @@
 			PageType.remove(pageType);
 		
 			$('#removePageTypeDialog').modal('hide');
+			
+			$scope.setPageType($scope.pageTypes[0]);
 		}
 		
 		// shows the edit tags dialog
@@ -2579,21 +2597,31 @@
 		});
 		
 		// list pages
-		Page.listAllowed(function(data){
+		$scope.listPages = function(){
+		
+			Page.invalidateCache();
+		
+			// list pages
+			Page.listAllowed(function(data){
+				
+				// debugging
+				if(Setup.debug)console.log('[respond.debug] Page.listAllowed');
+				if(Setup.debug)console.log(data);
+				
+				$scope.pages = data;
+				$scope.loading = false;
+				
+			});
 			
-			// debugging
-			if(Setup.debug)console.log('[respond.debug] Page.listAllowed');
-			if(Setup.debug)console.log(data);
-			
-			$scope.pages = data;
-			$scope.loading = false;
-			
-			setTimeout(function(){
+		}
+		
+		// list pages by default
+		$scope.listPages();
+		
+		// setup tour
+		setTimeout(function(){
 				$scope.setupTour();
 			}, 1);
-			
-			
-		});
 		
 		// list stylesheets
 		Stylesheet.list(function(data){

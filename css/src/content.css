@@ -526,7 +526,7 @@ body.content{}
 	margin: 0 0 5px 0;
     margin-left: 10px;
     margin-top: -3px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     background-color: #fff;  
 	box-shadow: 2px 3px 4px rgba(119,119,119,0.4);
     padding: 10px 10px;
@@ -704,7 +704,7 @@ body.content{}
 		}
 	
 	.context-menu label{
-		width: 75px;
+		width: 70px;
 		color: #555;
 		font-size: 12px;
 		vertical-align: top;
@@ -720,7 +720,7 @@ body.content{}
 	}
 
 	body .context-menu .form-control{
-		width: 160px;
+		width: 150px;
 		background-color: #fff !important;
 		border-radius: 0 !important;
 		padding: 0 5px !important;
@@ -780,7 +780,7 @@ body.content{}
 	body .context-menu .form-group .sp-replacer{
 		position: absolute;
 		top: 0;
-		right: 0;
+		right: 17px;
 		border: 1px solid #ddd;
 		background-color: #fff;
 		border-left: 1px solid transparent;
@@ -823,8 +823,8 @@ body.content{}
 		display: none;
 	}
 	
-	body.content .editor.container{
-		width: 100%;
+	.content-actions{
+	    width: calc(100%);
 	}
   
 }

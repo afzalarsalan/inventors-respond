@@ -32,6 +32,7 @@ class PageAddResource extends Tonic\Resource {
             $friendlyId = $request['friendlyId'];
             $description = $request['description'];
             
+            
 			// check permissions
 			if(Utilities::CanPerformAction($pageTypeId, $access['CanCreate']) == false){
 				return new Tonic\Response(Tonic\Response::BADREQUEST);
@@ -53,6 +54,18 @@ class PageAddResource extends Tonic\Resource {
 
 			// add page
             $page = Page::Add($friendlyId, $name, $description, $layout, $stylesheet, $pageTypeId, $token->SiteId, $token->UserId);
+            
+            // set content (if pageId set)
+            if(isset($request['pageId'])){
+            	
+            	// get existing page
+            	$existing_page = Page::GetByPageId($request['pageId']);
+            	
+            	// set content for page						
+				Page::EditContent($page['PageId'], $existing_page['Content'], $token->UserId);
+            
+            }
+            
             
             $fullName = $user['FirstName'].' '.$user['LastName'];
             $row['LastModifiedFullName'] = $fullName;
@@ -1504,10 +1517,11 @@ class PageListResource extends Tonic\Resource {
 
         parse_str($this->request->data, $request); // parse request
         $siteId = $request['siteId'];
-        $friendlyId = $request['type'];
+        $friendlyId = urldecode($request['type']);
         $pageSize = $request['pagesize'];
         $orderBy = $request['orderby'];
-        $current= $request['current'];        
+        $current= $request['current'];  
+        $tag = $request['tag'];           
 
         // get language
         $language = 'en';
@@ -1612,7 +1626,20 @@ class PageListResource extends Tonic\Resource {
                     'Tags' => $page['Tags']
                 );
             
-            array_push($pages, $item);
+            if($tag != ''){
+	            
+	           // echo 'tags='.$page['Tags'].' and tag='.$tag;
+	           // echo ' and pos='.strpos($page['Tags'], $tag);
+	            
+	            if(strpos($page['Tags'], $tag) !== false){
+		            array_push($pages, $item); 
+	            }
+	            
+            }
+            else{
+	           array_push($pages, $item); 
+            }
+            
         }
 
         // return a json response

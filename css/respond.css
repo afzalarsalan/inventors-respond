@@ -113,7 +113,7 @@ body textarea.form-control{
 	}
 
     .primary-button:hover{
-        background-color: #f8f8f8;
+        background-color: #2A7F9B;
     }
     
     .primary-button i, .secondary-button i, .tertiary-button i{
@@ -2224,7 +2224,7 @@ body.content{}
 	margin: 0 0 5px 0;
     margin-left: 10px;
     margin-top: -3px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     background-color: #fff;  
 	box-shadow: 2px 3px 4px rgba(119,119,119,0.4);
     padding: 10px 10px;
@@ -2402,7 +2402,7 @@ body.content{}
 		}
 	
 	.context-menu label{
-		width: 75px;
+		width: 70px;
 		color: #555;
 		font-size: 12px;
 		vertical-align: top;
@@ -2418,7 +2418,7 @@ body.content{}
 	}
 
 	body .context-menu .form-control{
-		width: 160px;
+		width: 150px;
 		background-color: #fff !important;
 		border-radius: 0 !important;
 		padding: 0 5px !important;
@@ -2478,7 +2478,7 @@ body.content{}
 	body .context-menu .form-group .sp-replacer{
 		position: absolute;
 		top: 0;
-		right: 0;
+		right: 17px;
 		border: 1px solid #ddd;
 		background-color: #fff;
 		border-left: 1px solid transparent;
@@ -2521,8 +2521,8 @@ body.content{}
 		display: none;
 	}
 	
-	body.content .editor.container{
-		width: 100%;
+	.content-actions{
+	    width: calc(100%);
 	}
   
 }
@@ -3259,7 +3259,7 @@ body.content{
 	    margin-left: 10px;
 	    margin-top: 10px;
 	    width: calc(100% - 270px);
-	    border: 1px solid #ddd;
+	    border: 1px solid #ccc;
 	    background-color: #fff;  
 	    box-shadow: 2px 3px 4px rgba(119,119,119,0.4);
 	    padding: 0;
@@ -3283,25 +3283,64 @@ body.content{
 		display: flex;
 	}
 	
-		/* flex widths */
+		/* flex width - .col-md-12 */
 		.editor .block .flex-100{
 			width: 100%;
 		}
 		
+		/* flex width - .col-md-11 */
+		.editor .block .flex-91{
+			width: 91.666%;
+		}
+		
+		/* flex width - .col-md-10 */
+		.editor .block .flex-83{
+			width: 83.333%;
+		}
+		
+		/* flex width - .col-md-9 */
+		.editor .block .flex-75{
+			width: 75%;
+		}
+		
+		/* flex width - .col-md-8 */
+		.editor .block .flex-66{
+			width: 66.666%;
+		}
+		
+		/* flex width - .col-md-7 */
+		.editor .block .flex-58{
+			width: 58.333%;
+		}
+		
+		/* flex width - .col-md-6 */
 		.editor .block .flex-50{
 			width: 50%;
 		}
 		
+		/* flex width - .col-md-5 */
+		.editor .block .flex-41{
+			width: 41.666%;
+		}
+		
+		/* flex width - .col-md-4 */
 		.editor .block .flex-33{
 			width: 33.33333%;
 		}
 		
-		.editor .block .flex-66{
-			width: 66.66666%;
-		}
-	
+		/* flex width - .col-md-3 */
 		.editor .block .flex-25{
 			width: 25%;
+		}
+		
+		/* flex width - .col-md-2 */
+		.editor .block .flex-16{
+			width: 16.666%;
+		}
+		
+		/* flex width - .col-md-1 */
+		.editor .block .flex-8{
+			width: 8.333%;
 		}
 	
 		.editor .block div.respond-p[data-cssclass~=text-center] div, 
@@ -3434,6 +3473,16 @@ body.content{
 	
 	.editor .block div.respond-h3 div{
 		font-size: 20px;
+		font-weight: bold;
+	}
+	
+	.editor .block div.respond-h4 div{
+		font-size: 18px;
+		font-weight: bold;
+	}
+	
+	.editor .block div.respond-h5 div{
+		font-size: 16px;
 		font-weight: bold;
 	}
 	
@@ -4347,9 +4396,6 @@ body.content{
 			color: #99B2B7;
 		}
 
-@media (min-width: 768px){
-
-}
 
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) { 
@@ -4364,6 +4410,11 @@ body.content{
 	
 	.editor .block div.col{
 		margin-bottom: 10px !important;
+	}
+	
+	.editor.container{
+		width: calc(100% - 20px);
+		margin-right: 10px;
 	}
   
 }

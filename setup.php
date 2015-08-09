@@ -30,7 +30,7 @@
 	/************************************/
 
 	// Version
-	define('VERSION', '5.0');
+	define('VERSION', '5.1');
 
 	// Brand name
 	define('BRAND', 'Respond');
@@ -148,9 +148,9 @@
 	// Key used to encrypt site SMTP passwords
 	define('SMTPENC_KEY', 'iloverespond');
 	    
-    // Set what emails should be sent out and a reply-to email address
-	define('REPLY_TO', '');
-	define('REPLY_TO_NAME', '');
+    // Set the From: address and name for outgoing emails
+	define('EMAILS_FROM', '');
+	define('EMAILS_FROM_NAME', '');
 	
 	// Welcome email
 	define('SEND_WELCOME_EMAIL', true);
