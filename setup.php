@@ -80,7 +80,7 @@
 	define('WEBHOOKS_URL', '');
 
 	// Default URL mode for the application (#, html5)
-	define('URL_MODE', '#');
+	define('URL_MODE', 'html5');
 	
 	// Image prefix (the protocol to use for accessing images, prefixes the domain name)
 	define('IMAGE_PREFIX', 'http://');
